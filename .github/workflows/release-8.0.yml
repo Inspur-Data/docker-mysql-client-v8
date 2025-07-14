@@ -57,4 +57,4 @@ jobs:
           file: 8.0/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           build-args: |
-            VERSION=${{ env.VERSION }}
+            VERSION=master
