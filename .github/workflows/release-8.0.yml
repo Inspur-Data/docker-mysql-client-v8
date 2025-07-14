@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: joseluisq/mysql-client
+          images: registry.cn-hangzhou.aliyuncs.com/testwydimage
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -34,8 +34,8 @@ jobs:
         name: Login to DockerHub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ secrets.USERNAME_ALI }}
+          password: ${{ secrets.PASSWORD_ALI }}
       -
         name: Prepare Docker envs
         shell: bash
@@ -47,7 +47,7 @@ jobs:
         with:
           push: true
           context: .
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           # platforms: linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6
           file: 8.0/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
