@@ -23,3 +23,4 @@ import:
 			mysql-client:latest \
 			mysql_importer import.env
 .PHONY: import
+
